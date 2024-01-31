@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    .macbook-air {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+    
+    .macbook-air .div {
+      background-color: #ffffff;
+      width: 1280px;
+      height: 832px;
+      position: relative;
+    }
+    
+    .macbook-air .frame {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7.5px;
+      padding: 7.5px;
+      position: absolute;
+      top: 18px;
+      left: 25px;
+      border-radius: 6px;
+      border: 2.25px solid;
+      border-color: #008081;
+    }
+    
+    .macbook-air .text-wrapper {
+      position: relative;
+      width: fit-content;
+      font-family: "Poppins", Helvetica;
+      font-weight: 500;
+      color: #008081;
+      font-size: 21.6px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+    
+    .macbook-air .text-wrapper-2 {
+      position: absolute;
+      top: 81px;
+      left: 476px;
+      font-family: "Poppins", Helvetica;
+      font-weight: 600;
+      color: #003f40;
+      font-size: 44px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+    
+    .macbook-air .frame-2 {
+      display: flex;
+      flex-wrap: wrap;
+      width: 877px;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 30.72px 56px;
+      position: absolute;
+      top: 363px;
+      left: 202px;
+    }
+    
+    .macbook-air .frame-3 {
+      position: relative;
+      width: 275.71px;
+      height: 172.61px;
+      margin-top: -1.92px;
+      margin-left: -1.92px;
+      border-radius: 11.52px;
+      border: 1.92px solid;
+      border-color: transparent;
+      box-shadow: 0px 7.68px 20.48px #01717340;
+      border-image: linear-gradient(to bottom, rgb(0, 63, 64), rgb(0, 125.51, 127.5)) 1;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 129, 0.1) 0%, rgba(0, 128, 129, 0.3) 100%);
+    }
+    
+    .macbook-air .group {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      top: 47px;
+      left: 193px;
+      background-image: url(./img/layer-2.png);
+      background-size: 100% 100%;
+    }
+    
+    .macbook-air .overlap-group-wrapper {
+      position: relative;
+      width: 41px;
+      height: 21px;
+      top: 23px;
+      left: 18px;
+    }
+    
+    .macbook-air .overlap-group {
+      position: relative;
+      width: 37px;
+      height: 21px;
+    }
+    
+    .macbook-air .text-wrapper-3 {
+      position: absolute;
+      top: 0;
+      left: 7px;
+      opacity: 0.6;
+      font-family: "Bison-Bold", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 6.9px;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+    }
+    
+    .macbook-air .text-wrapper-4 {
+      position: absolute;
+      top: 7px;
+      left: 0;
+      opacity: 0.6;
+      font-family: "Bison-Bold", Helvetica;
+      font-weight: 700;
+      color: #000000;
+      font-size: 11.5px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+    
+    .macbook-air .p {
+      position: absolute;
+      top: 50px;
+      left: 17px;
+      font-family: "Poppins", Helvetica;
+      font-weight: 400;
+      color: #003f3f;
+      font-size: 15.4px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+    
+    .macbook-air .span {
+      font-family: "Poppins", Helvetica;
+      font-weight: 400;
+      color: #003f3f;
+      font-size: 15.4px;
+      letter-spacing: 0;
+    }
+    
+    .macbook-air .text-wrapper-5 {
+      font-weight: 600;
+    }
+    
+    .macbook-air .frame-4 {
+      position: relative;
+      width: 275.71px;
+      height: 172.61px;
+      margin-top: -1.92px;
+      border-radius: 11.52px;
+      border: 1.92px solid;
+      border-color: transparent;
+      box-shadow: 0px 7.68px 20.48px #01717340;
+      border-image: linear-gradient(to bottom, rgb(0, 63, 64), rgb(0, 125.51, 127.5)) 1;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 129, 0.1) 0%, rgba(0, 128, 129, 0.3) 100%);
+    }
+    
+    .macbook-air .hat {
+      position: absolute;
+      width: 71px;
+      height: 90px;
+      top: 39px;
+      left: 180px;
+    }
+    
+    .macbook-air .frame-5 {
+      position: relative;
+      width: 275.71px;
+      height: 172.61px;
+      margin-top: -1.92px;
+      margin-right: -1.92px;
+      border-radius: 11.52px;
+      border: 1.92px solid;
+      border-color: transparent;
+      box-shadow: 0px 7.68px 20.48px #01717340;
+      border-image: linear-gradient(to bottom, rgb(0, 63, 64), rgb(0, 125.51, 127.5)) 1;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 129, 0.1) 0%, rgba(0, 128, 129, 0.3) 100%);
+    }
+    
+    .macbook-air .img {
+      position: absolute;
+      width: 75px;
+      height: 84px;
+      top: 43px;
+      left: 187px;
+    }
+    
+    .macbook-air .frame-6 {
+      position: relative;
+      width: 275.71px;
+      height: 172.61px;
+      margin-bottom: -1.92px;
+      border-radius: 11.52px;
+      border: 1.92px solid;
+      border-color: transparent;
+      box-shadow: 0px 7.68px 20.48px #01717340;
+      border-image: linear-gradient(to bottom, rgb(0, 63, 64), rgb(0, 125.51, 127.5)) 1;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 129, 0.1) 0%, rgba(0, 128, 129, 0.3) 100%);
+    }
+    
+    .macbook-air .element {
+      position: absolute;
+      width: 49px;
+      height: 89px;
+      top: 39px;
+      left: 211px;
+    }
+    
+    .macbook-air .triumph-over {
+      position: absolute;
+      top: 61px;
+      left: 17px;
+      font-family: "Poppins", Helvetica;
+      font-weight: 400;
+      color: #003f3f;
+      font-size: 15.4px;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+    
+    .macbook-air .layer {
+      position: absolute;
+      width: 103px;
+      height: 79px;
+      top: 50px;
+      left: 159px;
+    }
+    
+    .macbook-air .social-welfare {
+      position: absolute;
+      width: 879px;
+      top: 190px;
+      left: 200px;
+      font-family: "Poppins", Helvetica;
+      font-weight: 500;
+      color: #003f40;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: normal;
+    }
+    
+  </style>
+  <body>
+    
+    <div class="macbook-air">
+      <div class="div">
+        <div class="frame"><div class="text-wrapper"><a href="{% url 'base' %}" style="text-decoration:none; color:teal;">Back</a></div></div>
+        <div class="text-wrapper-2">Social Welfare</div>
+        <div class="frame-2">
+          <div class="frame-3">
+            <div class="group">
+              <div class="overlap-group-wrapper">
+                <div class="overlap-group">
+                  <div class="text-wrapper-3">Drug Free</div>
+                  <div class="text-wrapper-4">Champion</div>
+                </div>
+              </div>
+            </div>
+            <p class="p">
+              <span class="span">Earn your <br /></span>
+              <span class="text-wrapper-5">Drug-Free Champion<br /></span>
+              <span class="span">Badge</span>
+            </p>
+          </div>
+          <div class="frame-4">
+            <img class="hat" src="img/hat-1.svg" />
+            <p class="p">
+              <span class="span">Get Certified with<br />our</span>
+              <span class="text-wrapper-5"> Drug Literacy<br />Programme</span>
+            </p>
+          </div>
+          <div class="frame-5">
+            <img class="img" src="img/group-281.png" />
+            <p class="p">
+              <span class="span">Join our </span>
+              <span class="text-wrapper-5">Community <br /></span>
+              <span class="span">to contribute </span>
+              <span class="text-wrapper-5">against<br />Drug Use</span>
+            </p>
+          </div>
+          <div class="frame-6">
+            <img class="element" src="img/3.svg" />
+            <p class="triumph-over">
+              <span class="span">Triumph Over Addiction: <br /></span>
+              <span class="text-wrapper-5">Stories of Recovery</span>
+            </p>
+          </div>
+          <div class="frame-6">
+            <p class="p">
+              <span class="span">Engage with our<br /></span>
+              <span class="text-wrapper-5">Drug Awareness<br /></span>
+              <span class="span">Initiatives</span>
+            </p>
+            <img class="layer" src="img/layer-1.svg" />
+          </div>
+        </div>
+        <p class="social-welfare">
+          Social welfare programs play a pivotal role in improving lives by comprehensively addressing individuals&#39;
+          needs, thereby enhancing overall well-being and concurrently fostering the resilience and cohesion of
+          communities.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

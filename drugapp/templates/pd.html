@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&display=swap" rel="stylesheet">
+  <style>
+     #messages{
+      top:0%;
+      left:10px;
+      position: absolute;
+      z-index: 10;
+      background-color:rgb(1, 127, 127,0.5);
+      padding: 1rem;
+      border-radius: 20px 3px 20px 3px;
+      margin: 3px;
+    }
+
+    .co2{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .container-fluid{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap:2rem;
+      margin-top: 5rem;
+      
+    }
+    *{
+            font-family: 'Poppins', sans-serif;
+        }
+    .con1{
+      display: flex;
+      flex-direction: column;
+      
+      gap:3rem;
+    }
+    .card{
+      padding: 1.25rem;
+    }
+    .bt{
+      text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem;
+    background-color: rgb(3, 128, 128,0.8);
+    color:white;
+    
+    border-radius: 5px;
+    
+    }
+    
+      .bt:hover{
+        border: solid 2px teal;
+        
+        color: rgb(3, 128, 128,0.8);
+        background-color: white;
+    
+    }
+    .bb{
+      margin-top: 3rem;
+    }
+    #su{
+      margin-top: 1rem;
+    }
+    @media screen and (max-width: 680px) {
+  #map{
+    height: 200px;
+    width: 200px;
+  }
+}
+  </style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police | Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+  <a href="{% url 'lout' %}" class="btn" style="top: 1%; margin: 5px; left:2px; position: absolute; background-color: rgb(4, 130, 130,0.6); font-size: large;">Logout</a>
+    <div class="container-fluid">
+
+        
+        
+  <div class="con1">
+      <div id="comcard" class="card" style="border-color: teal;">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+          {{a}}
+          <span class="visually-hidden">unread messages</span>
+        </span>
+     <h2>Complaint</h2>
+     <div class="bb">
+     <a class="bt" href="{% url 'com' %}">Check Complaint</a>
+       </div>
+ </div>
+
+ <div class="card" style="border-color: teal;">
+    
+  <h2>Send Alert Message</h2>
+    <div class="bb">
+      <a class="bt" href="{% url 'alf' %}">Click Here</a>
+    </div>
+ </div>
+
+
+ <div class="card" style="border-color: teal;">
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{b}}
+    <span class="visually-hidden">unread messages</span>
+  </span>
+     <h2>View Alerts</h2>
+     <div class="bb">
+     <a class="bt" href="{% url 'almsg' %}">Click Here</a>
+    </div>
+    
+ </div>
+
+ 
+</div>
+<div class="co2">
+<div id="map" style="height: 550px; width: 600px; border-radius: 10px; margin-top: 1rem;"></div>
+
+<div class="cot2">
+        <div class="card" style="border-color: teal; width: 20rem;">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{e}}
+            <span class="visually-hidden">unread messages</span>
+          </span>
+             <h2>Wanted List</h2>
+             <div class="bb">
+             <a class="bt" href="{% url 'wanv' %}">View List</a>
+            </div>
+ 
+          </div> 
+
+          <div class="card" id="su" style="border-color: teal; width: 20rem;">
+            
+               <h2>Surveillance Camera Access</h2>
+               <div class="bb">
+               <a class="bt" href="{% url 'surway' %}">Access</a>
+              </div>
+   
+            </div> 
+            <div class="card" id="su" style="border-color: teal; width: 20rem;">
+            
+              <h2>Criminal Detector</h2>
+              <div class="bb">
+              <a class="bt" href="{% url 'maln' %}">Detect</a>
+             </div>
+  
+           </div> 
+
+        </div>
+
+
+    <script>
+        var map = L.map('map').setView([11.076312, 77.14226], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+{% for i in c %}
+var marker = L.marker([{{i.latitude}}, {{i.longitude}}]).addTo(map);
+marker.bindPopup("<a style='text-decoration:none; color:teal; font-weigth:bolder;' href='{% url 'vc' i.cid %}'>ComplaintID:- {{i.cid}}<a>").openPopup();
+{% endfor %}
+
+{% for j in d %}
+var circle = L.circle([{{j.lat}}, {{j.lon}}], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.8,
+    radius: 500
+}).addTo(map);
+circle.bindPopup("<a style='text-decoration:none; color:teal; font-weigth:bolder;' href='{% url 'va' j.aid %}'>AlertMessageID:- {{j.aid}}<a>");
+{% endfor %}
+
+    </script>
+
+
+
+{% if messages %}
+<div id="messages">
+    {% for message in messages %}
+    <h4 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h4>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+
+<script>
+  setTimeout(() => {
+  const box = document.getElementById('messages');
+
+ 
+  box.style.display = 'none';
+
+}, 3000); 
+
+</script>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

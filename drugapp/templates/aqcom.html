@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <title>criminal ID {{a}} | INFO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+      *{
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            background-color: teal;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            width:100vh;
+            margin-top: 2rem;
+           
+         
+           
+        }
+       .card{
+        padding: 1rem;
+        
+       }
+       .hf{
+        text-align: center;
+        color: teal;
+       }
+      
+       label{
+        margin-top:1.5rem ;
+        font-size: larger;
+        color: teal;
+        font-weight:600;
+       }
+       .bt{
+        text-align: center;
+        margin-top: 1rem;
+        
+      
+    }
+
+    </style>
+</head>
+
+<body style="background-color: teal;">
+
+    <a href="{% url 'aw' %}" class="btn" style="top: 1%; margin: 5px; left:2px; position: absolute; background-color: white; color: teal; font-size: large;">Back</a>
+    <div class="container">
+        <div class="card" style="border: 2px black solid; width: 25rem;">
+           
+            <div>
+                <form method="post" action="{% url 'acom' a %}" id="complaintForm">
+                    {% csrf_token %}
+                    <div>
+                        <label for="Complainttext" class="form-label">Information about {{b.aname}}</label>
+                        <textarea style="border: 2px teal solid;" class="form-control" id="Complainttext" name="info" rows="2"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="name" class="form-label">Name (optional)</label>
+                        <input class="form-control " style="border: 2px teal solid;" name="name" type="text"
+                            placeholder="Name" aria-label=". example">
+                    </div>
+
+                    <div>
+                        <label for="no" class="form-label">Mobile Number (optional)</label>
+                        <input class="form-control " style="border: 2px teal solid;" type="text" name="no"
+                            placeholder="Mobile No" aria-label=". example">
+                    </div>
+
+                    <div>
+                        <label for="map" class="form-label">Criminal Location</label>
+                        <div id="map" style="height: 200px; width: 370px;"></div>
+                        <input type="hidden" id="clat" name="clat">
+                        <input type="hidden" id="clon" name="clon">
+                        <script>
+                              var map = L.map('map').setView([11.076312, 77.14226], 12);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              }).addTo(map);
+              function onMapClick(e) {
+                var latitude = e.latlng.lat;
+                var longitude = e.latlng.lng;
+                var marker = L.marker([latitude, longitude]).addTo(map);
+                document.getElementById("clat").value = latitude;
+            
+                document.getElementById("clon").value = longitude;
+    
+              }
+              
+              map.on('click', onMapClick);
+                        </script>
+                    </div>
+
+                    <input type="hidden" id="lat" name="lat">
+                    <input type="hidden" id="lon" name="lon">
+
+                    <div class="bt">
+                        <button class="btn" onclick="getLocationAndSubmit()"
+                            style="background-color: teal; color: white;" type="button">Submit Complaint</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         function getLocationAndSubmit() {
+        
+        if (navigator.geolocation && document.getElementById("Complainttext").value.trim()) {
+        console.log("called");
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            document.getElementById("lat").value = latitude;
+            document.getElementById("lon").value = longitude;
+            document.getElementById("complaintForm").submit();
+        });
+    }
+     else if(document.getElementById("Complainttext").value.trim()){
+        console.log("called2")
+        document.getElementById("complaintForm").submit();
+    } 
+    else{
+        alert("Fill the Complaint Form")
+        
+    }
+}
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
